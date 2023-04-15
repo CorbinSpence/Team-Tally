@@ -1,0 +1,25 @@
+{
+  "name": "module-12-challenge",
+  "version": "1.0.0",
+  "description": "This is a program that will keep track of employees via sql database.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CorbinSpence/Team-Tally.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CorbinSpence/Team-Tally/issues"
+  },
+  "homepage": "https://github.com/CorbinSpence/Team-Tally#readme",
+  "dependencies": {
+    "console.table": "^0.10.0",
+    "inquirer": "^8.2.4",
+    "mysql2": "^3.2.1"
+  }
+}
