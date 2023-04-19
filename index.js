@@ -35,7 +35,8 @@ function addEmployee(){
                         `SELECT first_name, last_name, id FROM employee`,
                         (err, results, fields)=>{
                             let nameArr = results.map((val)=>val.first_name+' '+val.last_name)
-                            let employeeDict = {}
+                            nameArr.push('None')
+                            let employeeDict = {'None':null}
                             results.forEach((val)=>employeeDict[val.first_name+' '+val.last_name] = val.id)
                             inquirer.prompt([
                                 {
@@ -48,7 +49,7 @@ function addEmployee(){
                                 dbConnection.query(
                                     `INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES ("${innerData.firstName}", "${innerData.lastName}", ${roleDict[roleData.role]}, ${employeeDict[employeeData.manager]})`,
                                     function(err, results, field){
-                                        console.log(results)
+                                        console.log('Successfully added employee.')
                                         mainMenu()
                                     }
                                 )
@@ -90,7 +91,7 @@ function addRole(){
                     dbConnection.query(
                         `INSERT INTO role (title, salary, department_id) VALUES ("${data.title}", ${data.salary}, ${dict[departments.department]})`,
                         function(err, results, field){
-                            console.log(results)
+                            console.log('Successfully added role.')
                             mainMenu()
                         }
                     )
@@ -110,7 +111,7 @@ function addDepartment(){
         dbConnection.query(
             `INSERT INTO department (name) VALUES ("${data.name}")`,
             function(err, results, field){
-                console.log(results)
+                console.log('Successfully added department.')
                 mainMenu()
             }
         )
@@ -148,7 +149,7 @@ function updateEmployee(){
                             dbConnection.query(
                                 `UPDATE employee SET role_id=${roleDict[roleData.newRole]} WHERE id=${employeeDict[employeeData.employee]}`,
                                 function(err, results, field){
-                                    console.log(results)
+                                    console.log('Successfully updated employee role.')
                                     mainMenu()
                                 }
                             )
