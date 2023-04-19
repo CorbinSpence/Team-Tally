@@ -1,5 +1,6 @@
 const inquirer = require('inquirer')
 const mysql = require('mysql2')
+const cTable = require('console.table')
 
 const mainMenuChoices = ['View All Employees', 'Add Employee', 'Update Employee Role', 'View All Roles', 'Add Role', 'View All Departments', 'Add Department', 'Quit']
 
@@ -191,7 +192,7 @@ function mainMenu(){
                 dbConnection.query(
                     'SELECT * FROM employee',
                     function(err, results, field){
-                        console.log(results)
+                        console.table(results)
                         mainMenu()
                     }
                 )
@@ -206,7 +207,7 @@ function mainMenu(){
                 dbConnection.query(
                     'SELECT * FROM role',
                     function(err, results, field){
-                        console.log(results)
+                        console.table(results)
                         mainMenu()
                     }
                 )
@@ -218,7 +219,7 @@ function mainMenu(){
                 dbConnection.query(
                     'SELECT * FROM department',
                     function(err, results, field){
-                        console.log(results)
+                        console.table(results)
                         mainMenu()
                     }
                 )
