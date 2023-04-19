@@ -190,7 +190,7 @@ function mainMenu(){
         switch(data.dataQuery){
             case 'View All Employees':
                 dbConnection.query(
-                    'SELECT * FROM employee',
+                    'SELECT E.id, E.first_name, E.last_name, role.title AS role, department.name AS department, role.salary, CONCAT(M.first_name, M.last_name) AS manager FROM employee E LEFT JOIN employee M ON E.manager_id=M.id LEFT JOIN role ON E.role_id=role.id LEFT JOIN department ON role.department_id=department.id',
                     function(err, results, field){
                         console.table(results)
                         mainMenu()
@@ -205,7 +205,7 @@ function mainMenu(){
                 break;
             case 'View All Roles':
                 dbConnection.query(
-                    'SELECT * FROM role',
+                    'SELECT role.id, role.title, department.name AS department, role.salary FROM role LEFT JOIN department ON role.department_id=department.id',
                     function(err, results, field){
                         console.table(results)
                         mainMenu()
